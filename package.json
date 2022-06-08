@@ -1,0 +1,26 @@
+{
+  "name": "filemanadger",
+  "version": "1.0.0",
+  "description": "This repository is the part of nodejs-skils https://github.com/chaplygindenys/nodejs-skils",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaplygindenys/node-fileManadger.git"
+  },
+  "keywords": [
+    "nodejs",
+    "filemenadger",
+    "chaplygindenys"
+  ],
+  "author": "chaplygindenys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chaplygindenys/node-fileManadger/issues"
+  },
+  "homepage": "https://github.com/chaplygindenys/node-fileManadger#readme"
+}
