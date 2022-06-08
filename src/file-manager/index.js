@@ -1,3 +1,4 @@
+import { cl } from "../app.mjs";
 import {
   add,
   cat,
@@ -13,7 +14,7 @@ import {
   up,
 } from "../config.js";
 
-export const comdMenager = (cmd, name, pathFrom, pathTo, dir) => {
+export const comdMenager = (cmd, opt1, opt2) => {
   let resalt = "";
   switch (cmd) {
     case errMes():
@@ -37,39 +38,39 @@ export const comdMenager = (cmd, name, pathFrom, pathTo, dir) => {
       return resalt;
       break;
     case `add`:
-      resalt = add(name);
+      resalt = add(opt1);
       return resalt;
       break;
     case `rn`:
-      resalt = rn(pathFrom, name);
+      resalt = rn(opt1, opt2);
       return resalt;
       break;
     case `cp`:
-      resalt = cp(pathFrom, dir);
+      resalt = cp(opt1, opt2);
       return resalt;
       break;
     case `mv`:
-      resalt = mv(pathFrom, dir);
+      resalt = mv(opt1, opt2);
       return resalt;
       break;
     case `rm`:
-      resalt = rm(pathFrom);
+      resalt = rm(opt1);
       return resalt;
       break;
     case `os`:
-      resalt = os();
+      resalt = os(opt1);
       return resalt;
       break;
     case `hash`:
-      resalt = hash(pathFrom);
+      resalt = hash(opt1);
       return resalt;
       break;
     case `compress`:
-      resalt = compress(pathFrom, pathTo);
+      resalt = compress(opt1, opt2);
       return resalt;
       break;
     case `decompress`:
-      resalt = decompress(pathFrom, pathTo);
+      resalt = decompress(opt1, opt2);
       return resalt;
       break;
     case "exit":

@@ -1,6 +1,7 @@
 import { parseArgs as parseName } from "./modules/cli/args.js";
 import { workDir } from "./modules/path/workDir.js";
 import { homeDir } from "./modules/path/homeDir.js";
+import { cl } from "./app.mjs";
 
 export const welcom = () => `Welcome to the File Manager, ${parseName()}!`;
 export const thank = () => `Thank you for using File Manager, ${parseName()}!`;
@@ -8,7 +9,7 @@ export const currentPath = () => `You are currently in ${workDir()}!`;
 export const invalidInput = () => `Invalid input`;
 export const errMes = () => `Operation failed`;
 export const startPath = () => `${homeDir()}`;
-export const up = () => `up`;
+export const up = () => upToParentDir();
 export const cd = (path) => path;
 export const ls = () => `ls`;
 export const cat = (path) => path;
@@ -17,7 +18,7 @@ export const rn = (path, name) => `${(path, name)}`;
 export const cp = (path, dir) => `${(path, dir)}`;
 export const mv = (path, dir) => `${(path, dir)}`;
 export const rm = (path) => `${path}`;
-export const os = () => `${`os`}`;
+export const os = (opt) => `${opt}`;
 export const hash = (path) => `${path}`;
 export const compress = (path, pathTo) => `${(path, pathTo)}`;
 export const decompress = (path, pathTo) => `${(path, pathTo)}`;
