@@ -11,6 +11,7 @@ import {
   ls,
   os,
   rm,
+  rn,
   up,
 } from "../config.js";
 

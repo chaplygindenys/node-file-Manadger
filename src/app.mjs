@@ -33,7 +33,7 @@ const myline = rl.on("line", (line) => {
   cmd = arrLine[0];
   opt1 = arrLine[1];
   opt2 = arrLine[2];
-  const resalt = comdMenager(cmd, opt1, opt1);
+  const resalt = comdMenager(cmd, opt1, opt2);
   cl(resalt.toUpperCase());
   if (resalt === errMes()) {
   }

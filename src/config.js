@@ -8,6 +8,7 @@ import { lsDir } from "./modules/path/listDir.js";
 import { cdDir } from "./modules/path/cdDir.js";
 import { read } from "./modules/fs/read.js";
 import { create } from "./modules/fs/create.js";
+import { renameFile } from "./modules/fs/rename.js";
 
 export const welcom = () => `Welcome to the File Manager, ${parseName()}!`;
 export const thank = () => `Thank you for using File Manager, ${parseName()}!`;
@@ -22,9 +23,9 @@ export const up = () => {
 export const cd = (path) => `${cdDir(path)}`;
 export const ls = () => `${lsDir()}`;
 export const cat = (path) => `${read(path)}`;
-
 export const add = (path) => `${create(path)}`;
-export const rn = (path, name) => `${(path, name)}`;
+export const rn = (path, name) => `${renameFile(path, name)}`;
+
 export const cp = (path, dir) => `${(path, dir)}`;
 export const mv = (path, dir) => `${(path, dir)}`;
 export const rm = (path) => `${path}`;
