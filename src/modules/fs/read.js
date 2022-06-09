@@ -1,28 +1,19 @@
-import fs from "fs";
+import { lstatSync, readFileSync } from "fs";
+import { cl } from "../../app.mjs";
+import { errMes } from "../../config.js";
 
-export const read = async () => {
+export const read = (path) => {
   try {
-    const srcPath = "./files";
-    const filePath = `${srcPath}/fileToRead.txt`;
-
-    const isSrcExists = fs.existsSync(srcPath);
-
-    if (!isSrcExists) {
-      throw new Error("FS operation failed");
+    if (lstatSync(path).isFile()) {
+      cl(lstatSync(path).isFile());
+      cl(path);
+      const buffer = readFileSync(path, "utf8");
+      process.stdout.write(buffer);
+      return "ok";
+    } else {
+      return errMes();
     }
-
-    const isFileExists = fs.existsSync(filePath);
-
-    if (!isFileExists) {
-      throw new Error("FS operation failed");
-    }
-
-    const buffer = await fs.promises.readFile(filePath, "utf8");
-
-    console.log(buffer);
   } catch (e) {
-    console.error(e.message);
+    return errMes();
   }
 };
-
-read();

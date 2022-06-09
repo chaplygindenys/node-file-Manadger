@@ -34,7 +34,7 @@ export const comdMenager = (cmd, opt1, opt2) => {
       return resalt;
       break;
     case `cat`:
-      resalt = cat();
+      resalt = cat(opt1);
       return resalt;
       break;
     case `add`:
