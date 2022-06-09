@@ -1,29 +1,31 @@
-import fs from 'fs';
+import { existsSync, mkdirSync } from "fs";
+import { copyFile } from "fs/promises";
+import { parse, sep } from "path";
+import { errMes } from "../../config.js";
 
+export const cpFile = (pathFrom, dierctory) => {
+  const newDir = `${dierctory}`;
+  const filePath = `${pathFrom}`;
+  try {
+    const isFileExists = existsSync(filePath);
 
-export const copy = async () => {
-	try {
-		const srcPath = './files';
-		const destPath = './files_copy';
-
-		const isSrcExists = fs.existsSync(srcPath);
-		const isDestExists = fs.existsSync(destPath);
-
-		if (!isSrcExists || isDestExists) {
-			throw new Error('FS operation failed');
-		}
-
-		const files = await fs.promises.readdir(srcPath);
-
-		await fs.promises.mkdir(destPath);
-		
-		for (const file of files) {
-			const buffer = await fs.promises.readFile(`${srcPath}/${file}`);
-			await fs.promises.writeFile(`${destPath}/${file}`, buffer);
-		}
-	} catch (e) {
-		console.error(e.message)
-	};
+    if (isFileExists) {
+      const fileName = parse(filePath).name;
+      let isNewDirExists = existsSync(newDir);
+      if (!isNewDirExists) {
+        mkdirSync(newDir, { recursive: false });
+      }
+      isNewDirExists = existsSync(newDir);
+      if (isFileExists && isNewDirExists) {
+        copyFile(filePath, `${newDir}${sep}${fileName}`);
+        return "ok";
+      } else {
+        return errMes();
+      }
+    } else {
+      return errMes();
+    }
+  } catch (e) {
+    return errMes();
+  }
 };
-
-copy();

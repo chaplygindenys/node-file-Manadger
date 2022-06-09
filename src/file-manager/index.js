@@ -2,6 +2,7 @@ import { cl } from "../app.mjs";
 import {
   add,
   cat,
+  cp,
   cd,
   compress,
   decompress,
