@@ -26,7 +26,7 @@ export const comdMenager = (cmd, opt1, opt2) => {
       return resalt;
       break;
     case `cd`:
-      resalt = cd();
+      resalt = cd(opt1);
       return resalt;
       break;
     case `ls`:
