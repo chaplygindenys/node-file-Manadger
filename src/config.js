@@ -13,6 +13,7 @@ import { cpFile } from "./modules/fs/copy.js";
 import { rmFile } from "./modules/fs/delete.js";
 import { mvFile } from "./modules/fs/move.js";
 import { opSistem } from "./modules/os/os.js";
+import { calcHash } from "./modules/hash/calcHash.js";
 
 export const welcom = () => `Welcome to the File Manager, ${parseName()}!`;
 export const thank = () => `Thank you for using File Manager, ${parseName()}!`;
@@ -32,8 +33,8 @@ export const rn = (path, name) => `${renameFile(path, name)}`;
 export const cp = (path, dir) => `${cpFile(path, dir)}`;
 export const mv = (path, dir) => `${mvFile(path, dir)}`;
 export const rm = (path) => `${rmFile(path)}`;
-
 export const os = (opt1) => `${opSistem(opt1)}`;
-export const hash = (path) => `${path}`;
+
+export const hash = (path) => `${calcHash(path)}`;
 export const compress = (path, pathTo) => `${(path, pathTo)}`;
 export const decompress = (path, pathTo) => `${(path, pathTo)}`;
