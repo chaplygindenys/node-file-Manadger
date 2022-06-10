@@ -10,6 +10,7 @@ import {
   hash,
   invalidInput,
   ls,
+  mv,
   os,
   rm,
   rn,

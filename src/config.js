@@ -10,6 +10,9 @@ import { read } from "./modules/fs/read.js";
 import { create } from "./modules/fs/create.js";
 import { renameFile } from "./modules/fs/rename.js";
 import { cpFile } from "./modules/fs/copy.js";
+import { rmFile } from "./modules/fs/delete.js";
+import { mvFile } from "./modules/fs/move.js";
+import { opSistem } from "./modules/os/os.js";
 
 export const welcom = () => `Welcome to the File Manager, ${parseName()}!`;
 export const thank = () => `Thank you for using File Manager, ${parseName()}!`;
@@ -27,10 +30,10 @@ export const cat = (path) => `${read(path)}`;
 export const add = (path) => `${create(path)}`;
 export const rn = (path, name) => `${renameFile(path, name)}`;
 export const cp = (path, dir) => `${cpFile(path, dir)}`;
+export const mv = (path, dir) => `${mvFile(path, dir)}`;
+export const rm = (path) => `${rmFile(path)}`;
 
-export const mv = (path, dir) => `${(path, dir)}`;
-export const rm = (path) => `${path}`;
-export const os = (opt) => `${opt}`;
+export const os = (opt1) => `${opSistem(opt1)}`;
 export const hash = (path) => `${path}`;
 export const compress = (path, pathTo) => `${(path, pathTo)}`;
 export const decompress = (path, pathTo) => `${(path, pathTo)}`;
