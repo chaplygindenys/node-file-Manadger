@@ -91,8 +91,8 @@ List of operations and their syntax:
 - Compress and decompress operations
   path_to_destination should be exist !!!
   exemple:
-  add a.br
-  mv a.br somedirectory
+  add a
+  mv a somedirectory
   compress some_path somedirectory/a.br
 
   - Compress file (using Brotli algorytm)
