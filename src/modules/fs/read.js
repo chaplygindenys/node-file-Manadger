@@ -1,28 +1,23 @@
-import fs from "fs";
+import { lstatSync } from "fs";
+import { errMes } from "../../config.js";
+import { MyReadSt } from "./MyReadSt.js";
+import { pipeline } from "stream";
+import { stdout } from "process";
 
-export const read = async () => {
+export const read = (path) => {
   try {
-    const srcPath = "./files";
-    const filePath = `${srcPath}/fileToRead.txt`;
-
-    const isSrcExists = fs.existsSync(srcPath);
-
-    if (!isSrcExists) {
-      throw new Error("FS operation failed");
+    if (lstatSync(path).isFile()) {
+      const readFromFilePath = new MyReadSt(path);
+      pipeline(readFromFilePath, stdout, (err) => {
+        if (err) {
+          throw new Error(err);
+        }
+      });
+      return "ok";
+    } else {
+      return errMes();
     }
-
-    const isFileExists = fs.existsSync(filePath);
-
-    if (!isFileExists) {
-      throw new Error("FS operation failed");
-    }
-
-    const buffer = await fs.promises.readFile(filePath, "utf8");
-
-    console.log(buffer);
   } catch (e) {
-    console.error(e.message);
+    return errMes();
   }
 };
-
-read();

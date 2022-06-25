@@ -1,27 +1,18 @@
-import fs from 'fs';
+import { existsSync } from "fs";
+import { rm } from "fs/promises";
+import { errMes } from "../../config.js";
 
-
-export const remove = async () => {
-	try {
-		const dirPath = './files';
-		const filePath = `${dirPath}/fileToRemove.txt`;
-
-		const isDirExists = fs.existsSync(dirPath);
-		
-		if (!isDirExists) {
-			throw new Error('FS operation failed');
-		}
-
-		const isFileExists = fs.existsSync(filePath);
-
-		if (!isFileExists) {
-		  throw new Error('FS operation failed');
-		}
-
-		await fs.promises.rm(filePath);
-	} catch (e) {
-		console.error(e.message);
-	}
+export const rmFile = (path) => {
+  try {
+    const filePath = `${path}`;
+    const isFileExists = existsSync(filePath);
+    if (isFileExists) {
+      rm(filePath);
+      return "ok";
+    } else {
+      return errMes();
+    }
+  } catch (e) {
+    return errMes();
+  }
 };
-
-remove();

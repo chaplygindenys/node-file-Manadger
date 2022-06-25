@@ -4,6 +4,10 @@
 
 ## Technical requirements
 
+1. `npm i`
+
+2.
+
 - The program is started by npm-script start in following way:
 
 ```bash
@@ -89,11 +93,20 @@ List of operations and their syntax:
   hash path_to_file
   ```
 - Compress and decompress operations
+  path_to_destination should be exist !!!
+  exemple:
+  add a
+  mv a somedirectory
+  compress some_path somedirectory/a.br
+
   - Compress file (using Brotli algorytm)
+
   ```bash
   compress path_to_file path_to_destination
   ```
+
   - Decompress file (using Brotli algorytm)
+
   ```bash
   decompress path_to_file path_to_destination
   ```

@@ -1,16 +1,41 @@
 import { parseArgs as parseName } from "./modules/cli/args.js";
+import { workDir } from "./modules/path/workDir.js";
+import { homeDir } from "./modules/path/homeDir.js";
+import { upToParentDir } from "./modules/path/upToParentDir.js";
+import { cl } from "./app.mjs";
+import { chdir, cwd } from "process";
+import { lsDir } from "./modules/path/listDir.js";
+import { cdDir } from "./modules/path/cdDir.js";
+import { read } from "./modules/fs/read.js";
+import { create } from "./modules/fs/create.js";
+import { renameFile } from "./modules/fs/rename.js";
+import { cpFile } from "./modules/fs/copy.js";
+import { rmFile } from "./modules/fs/delete.js";
+import { mvFile } from "./modules/fs/move.js";
+import { opSistem } from "./modules/os/os.js";
+import { calcHash } from "./modules/hash/calcHash.js";
+import { compressFile } from "./modules/zip/compress.js";
+import { decompressFile } from "./modules/zip/decompress.js";
 
 export const welcom = () => `Welcome to the File Manager, ${parseName()}!`;
 export const thank = () => `Thank you for using File Manager, ${parseName()}!`;
-export const currentPath = () =>
-  `You are currently in ${pathToWorkingDirectory}`;
-export const starPath = () => {};
-export const invalidInput = `Invalid input`;
-export const errMes = `Operation failed`;
-//  export const
-//  export const
-//  export const
-//  export const
-//  export const
-//  export const
-//  export const
+export const currentPath = () => `You are currently in: ${workDir()}`;
+export const invalidInput = () => `Invalid input`;
+export const errMes = () => `Operation failed`;
+export const startPath = () => `${homeDir()}`;
+export const up = () => {
+  chdir(upToParentDir());
+  return cwd();
+};
+export const cd = (path) => `${cdDir(path)}`;
+export const ls = () => `${lsDir()}`;
+export const cat = (path) => `${read(path)}`;
+export const add = (path) => `${create(path)}`;
+export const rn = (path, name) => `${renameFile(path, name)}`;
+export const cp = (path, dir) => `${cpFile(path, dir)}`;
+export const mv = (path, dir) => `${mvFile(path, dir)}`;
+export const rm = (path) => `${rmFile(path)}`;
+export const os = (opt1) => `${opSistem(opt1)}`;
+export const hash = (path) => `${calcHash(path)}`;
+export const compress = (path, pathTo) => `${compressFile(path, pathTo)}`;
+export const decompress = (path, pathTo) => `${decompressFile(path, pathTo)}`;
