@@ -8,24 +8,19 @@ export const decompressFile = (pathFrom, pathTo) => {
     const isFileFromExists = existsSync(pathFrom);
 
     if (isFileFromExists) {
-      const isFileToExists = existsSync(pathTo);
-      if (!isFileToExists) {
-        return errMes();
-      } else {
-        pipeline(
-          createReadStream(`${pathFrom}`),
-          zlib.createBrotliDecompress({
-            chunkSize: 32 * 1024,
-          }),
-          createWriteStream(`${pathTo}`),
-          (e) => {
-            if (e) {
-              return errMes();
-            }
+      pipeline(
+        createReadStream(`${pathFrom}`),
+        zlib.createBrotliDecompress({
+          chunkSize: 32 * 1024,
+        }),
+        createWriteStream(`${pathTo}`),
+        (e) => {
+          if (e) {
+            return errMes();
           }
-        );
-        return "ok";
-      }
+        }
+      );
+      return "ok";
     } else {
       return errMes();
     }

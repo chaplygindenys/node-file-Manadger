@@ -8,31 +8,25 @@ export const compressFile = (pathFrom, pathTo) => {
     const isFileFromExists = existsSync(pathFrom);
 
     if (isFileFromExists) {
-      const isFileToExists = existsSync(pathTo);
-      if (!isFileToExists) {
-        return errMes();
-      } else {
-        pipeline(
-          createReadStream(`${pathFrom}`),
-          zlib.createBrotliCompress({
-            chunkSize: 32 * 1024,
-            params: {
-              [zlib.constants.BROTLI_PARAM_MODE]:
-                zlib.constants.BROTLI_MODE_TEXT,
-              [zlib.constants.BROTLI_PARAM_QUALITY]: 4,
-              [zlib.constants.BROTLI_PARAM_SIZE_HINT]: statSync(pathFrom).size,
-            },
-          }),
-          createWriteStream(`${pathTo}`),
-          (e) => {
-            if (e) {
-              return errMes();
-            }
+      pipeline(
+        createReadStream(`${pathFrom}`),
+        zlib.createBrotliCompress({
+          chunkSize: 32 * 1024,
+          params: {
+            [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+            [zlib.constants.BROTLI_PARAM_QUALITY]: 4,
+            [zlib.constants.BROTLI_PARAM_SIZE_HINT]: statSync(pathFrom).size,
+          },
+        }),
+        createWriteStream(`${pathTo}`),
+        (e) => {
+          if (e) {
+            return errMes();
           }
-        );
+        }
+      );
 
-        return "ok";
-      }
+      return "ok";
     } else {
       return errMes();
     }
