@@ -2,7 +2,7 @@
   "name": "file-manadger",
   "version": "1.0.0",
   "description": "This repository is the part of nodejs-skils https://github.com/chaplygindenys/nodejs-skils",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "start": "node src/app.mjs",
