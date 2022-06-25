@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync } from "fs";
-import { parse, sep } from "path";
+import { extname, parse, sep } from "path";
 import { pipeline } from "stream";
 import { errMes } from "../../config.js";
 import { MyReadSt } from "./MyReadSt.js";
@@ -7,20 +7,22 @@ import { MyWriteSt } from "./MyWriteSt.js";
 
 export const cpFile = (pathFrom, dierctory) => {
   const newDir = `${dierctory}`;
-  const filePath = `${pathFrom}`;
+  const extName = extname(pathFrom);
   try {
-    const isFileExists = existsSync(filePath);
+    const isFileExists = existsSync(pathFrom);
 
     if (isFileExists) {
-      const fileName = parse(filePath).name;
+      const fileName = parse(pathFrom).name;
       let isNewDirExists = existsSync(newDir);
       if (!isNewDirExists) {
         mkdirSync(newDir, { recursive: false });
       }
       isNewDirExists = existsSync(newDir);
       if (isFileExists && isNewDirExists) {
-        const writeToFile = new MyWriteSt(`${newDir}${sep}${fileName}`);
-        const readFromFile = new MyReadSt(filePath);
+        const writeToFile = new MyWriteSt(
+          `${newDir}${sep}${fileName}${extName}`
+        );
+        const readFromFile = new MyReadSt(pathFrom);
 
         pipeline(readFromFile, writeToFile, (err) => {
           if (err) {

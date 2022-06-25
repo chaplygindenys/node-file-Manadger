@@ -4,6 +4,10 @@
 
 ## Technical requirements
 
+1. `npm i`
+
+2.
+
 - The program is started by npm-script start in following way:
 
 ```bash
